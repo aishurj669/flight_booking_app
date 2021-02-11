@@ -2,11 +2,13 @@ import 'dart:async';
 
 
 import 'package:flight_booking_app/common/colors.dart';
-import 'package:flight_booking_app/screen/start_page.dart';
+import 'package:flight_booking_app/common/string.dart';
+import 'package:flight_booking_app/screen/signUp_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class Splash_Screen extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -15,6 +17,7 @@ class Splash_Screen extends StatefulWidget {
 }
 
 class Splash_State extends State<Splash_Screen> {
+  // To set a navigation and duration
   String versionName = 'V1.0';
   final splashDelay = 5;
 
@@ -23,18 +26,9 @@ class Splash_State extends State<Splash_Screen> {
     // TODO: implement initState
     super.initState();
     Timer(
-        Duration(seconds: 10),
+        Duration(seconds: 10),   // setting the duration for splash
             () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => Start_Page())));
-  }
-
-  loadWidget() async {
-    var duration = Duration(seconds: splashDelay);
-    return Timer(duration, navigationPage);
-  }
-
-  void navigationPage() {
-    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Json()));
+            MaterialPageRoute(builder: (context) => SignUp_Page())));
   }
 
   @override
@@ -44,32 +38,38 @@ class Splash_State extends State<Splash_Screen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          color: MyColors.blue,
+          color: MyColors.backgroundblue,                     // Here used colors file for colors
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  'assets/images/splashlogo.png',
+                  'assets/images/splashlogo.png',// I added asset image
                   height: 100,
                   width: 100,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
-                      Text('navana ',
+                      Text(MyString.navana,            // here used string file for text
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 40,
-                              color: Colors.white)),
-                      Text('air',
+                              color: MyColors.textwhite
+                          )
+                      ),
+                      SizedBox(width: 12),
+                      Text(MyString.air,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 40,
-                              color: MyColors.pink)),
+                              color: MyColors.buttonpink
+                          )
+                      ),
                     ]
                 )
-
-              ]),
-        ));
+              ]
+          ),
+        )
+    );
   }
 }
